@@ -70,10 +70,7 @@ var mixVal = {
   },
 
 
-
-
   _resizeVideo : function(){
-
     var number = Math.floor((Math.random() * 5) + 1);
     $('#vid').tubular({
       videoId: 'QtXby3twMmI',
@@ -126,7 +123,6 @@ var mixVal = {
       mixVal._toggleOverlay();
 
       var my = JSON.stringify(me);
-
       window.localStorage.setItem("scAuth", my);
       console.log(me);
     });
@@ -143,6 +139,13 @@ var mixVal = {
 
   renderTracks : function(tracks, headline){
 
+    var TrackitemWrapper = document.getElementsByClassName('tracklist')[0];
+    for (var song in tracks){
+      console.log(tracks[song]);
+      TrackitemWrapper.innerHTML += '<div class="track-item"><p class="name">'+tracks[song].title+'</p><img class="cover" src="'+tracks[song].artwork_url+'" /><div class="infos"><p class="artist"></p></div><p class="bpm">'+tracks[song].bpm+'</p><p data-track="'+tracks[song].stream_url
++'"class="one deck">Deck1</p><p class="two deck">Deck2</p></div>';
+    }
+    TrackitemWrapper.innerHTML = myTracks;
 
   },
 
