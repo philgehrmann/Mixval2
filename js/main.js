@@ -22,6 +22,23 @@ var mixVal = {
     6 : ""
   },
 
+  _Deck1 : {
+    ID :'',
+    stream_url: '',
+    title: '',
+    waveform_url: '',
+    artwork_url:'',
+    genre:'',
+  },
+
+  _Deck2 : {
+    ID :'',
+    title: '',
+    waveform_url: '',
+    artwork_url:'',
+    genre:'',
+  },
+
   init : function(){
 
   // mixVal._checkAuth();
@@ -29,16 +46,68 @@ var mixVal = {
   },
 
   _listener : function(){
- var playBtn = document.querySelectorAll('.play.one')[0];
- console.log(playBtn);
+    var playBtn = document.querySelectorAll('.play.one')[0];
    playBtn.addEventListener("click" , mixVal.playDeck1);
+
+   var playBtn = document.querySelectorAll('.play.two')[0];
+  playBtn.addEventListener("click" , mixVal.playDeck2);
+
+
   },
 
-  playDeck1 : function(e){
-    SC.stream('/tracks/246062897').then(function(player){
-      player.play();
+  setDeck1 : function(sound){
+    soundID = sound.attr('data-track');
+    SC.get('/tracks/'+soundID).then(function(track) {
+      mixVal._Deck1.ID = track.id;
+      mixVal._Deck1.title = track.title;
+      mixVal._Deck1.waveform_url = track.waveform_url;
+      mixVal._Deck1.artwork_url = track.artwork_url;
+      mixVal._Deck1.genre = track.genre;
+      mixVal._Deck1.stream_url = track.stream_url;
+      mixVal.makeDeck1();
     });
   },
+
+  makeDeck1 : function(){
+    var wave = document.querySelector('#player1 .wave');
+    var title = document.querySelector('#player1 .title');
+    var wheel = document.querySelector('#player1 .wheel');
+    wave.innerHTML = "<img src='"+mixVal._Deck1.waveform_url+"'/>";
+    title.innerHTML = mixVal._Deck1.title;
+    wheel.innerHTML = "<img src='"+mixVal._Deck1.artwork_url+"'/>";
+
+  },
+
+
+    setDeck2 : function(sound){
+      soundID = sound.attr('data-track');
+      SC.get('/tracks/'+soundID).then(function(track) {
+        mixVal._Deck2.ID = track.id;
+        mixVal._Deck2.title = track.title;
+        mixVal._Deck2.waveform_url = track.waveform_url;
+        mixVal._Deck2.artwork_url = track.artwork_url;
+        mixVal._Deck2.genre = track.genre;
+        mixVal._Deck2.stream_url = track.stream_url;
+        mixVal.makeDeck2();
+      });
+    },
+
+    makeDeck2 : function(){
+      var wave = document.querySelector('#player2 .wave');
+      var title = document.querySelector('#player2 .title');
+      var wheel = document.querySelector('#player2 .wheel');
+      wave.innerHTML = "<img src='"+mixVal._Deck2.waveform_url+"'/>";
+      title.innerHTML = mixVal._Deck2.title;
+      wheel.innerHTML = "<img src='"+mixVal._Deck2.artwork_url+"'/>";
+
+    },
+
+
+  playDeck1 : function(TrackID){
+
+  },
+
+
 
   _checkAuth : function(){
     if(window.localStorage.getItem("scAuth")){
@@ -79,7 +148,7 @@ var mixVal = {
     var number = Math.floor((Math.random() * 5) + 1);
     $('#vid').tubular({
       videoId: 'QtXby3twMmI',
-      mute: true,
+      mute: false,
       repeat: true,
       wrapperZIndex: 0,
       start: 15
@@ -114,7 +183,7 @@ var mixVal = {
   SC.connect().then(function() {
       return SC.get('/me');
     }).then(function(me) {
-      mixVal._listener();
+
       mixVal._userData.ID = me.id;
       mixVal._data.AUTH = true;
       $("#firstpage").toggleClass("active");
@@ -126,6 +195,7 @@ var mixVal = {
       $("#vid-overlay").remove();
       mixVal._setUserdata(me);
       mixVal._toggleOverlay();
+      mixVal._listener();
 
       var my = JSON.stringify(me);
       window.localStorage.setItem("scAuth", my);
@@ -146,12 +216,10 @@ var mixVal = {
 
     var TrackitemWrapper = document.getElementsByClassName('tracklist')[0];
     for (var song in tracks){
-      console.log(tracks[song]);
-      TrackitemWrapper.innerHTML += '<div class="track-item"><p class="name">'+tracks[song].title+'</p><img class="cover" src="" /><div class="infos"><p class="artist"></p></div><p class="bpm">'+tracks[song].bpm+'</p><p data-track="'+tracks[song].stream_url
-+'"class="one deck">Deck1</p><p class="two deck">Deck2</p></div>';
+      TrackitemWrapper.innerHTML += '<div class="track-item"><p class="name">'+tracks[song].title+'</p><img class="cover" src="" /><div class="infos"><p class="artist"></p></div><p class="bpm">'+tracks[song].bpm+'</p><p data-track="'+tracks[song].id
++'"class="one deck" onclick="mixVal.setDeck1($(this));">Deck1</p><p onclick="mixVal.setDeck2($(this));"data-track="'+tracks[song].id+'" class="two deck">Deck2</p></div>';
     }
     TrackitemWrapper.innerHTML = myTracks;
-
   },
 
 
