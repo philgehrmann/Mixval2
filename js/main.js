@@ -33,8 +33,6 @@ var mixVal = {
 
   },
 
-
-
   _checkAuth : function(){
     if(window.localStorage.getItem("scAuth")){
         var token = window.localStorage.getItem("scAuth");
