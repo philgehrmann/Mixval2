@@ -231,7 +231,16 @@ position:relative;
   &.active{
     display:block;
   }
+  .fader {
+    transform: rotate(-90deg);
+    display: block;
+    margin: 0 auto;
+    height: 200px;
+    width: 100px;
+  }
   #player1 {
+    width: 100px;
+    margin: 0 auto;
     .play.one {
       width: 100px;
       height: 100px;
@@ -251,7 +260,7 @@ position:relative;
   .sc-bar{
     width:100%;
     box-sizing: border-box;
-    position:absolute;
+    position:relative;
     bottom:0;
     height:500px;
     border-top:1px dashed rgba(28,130,69, 0.5);
