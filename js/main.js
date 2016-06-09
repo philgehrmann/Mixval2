@@ -128,7 +128,7 @@ var mixVal = {
       var my = JSON.stringify(me);
 
       window.localStorage.setItem("scAuth", my);
-
+      console.log(me);
     });
   },
 

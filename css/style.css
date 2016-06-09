@@ -316,7 +316,23 @@ footer a:hover {
 #mixer.active {
   display: block;
 }
-/* line 234, ../sass/style.scss */
+/* line 235, ../sass/style.scss */
+#mixer #player .play {
+  width: 100px;
+  height: 100px;
+  background-color: #1c8245;
+  display: block;
+  margin: 0 auto;
+}
+/* line 241, ../sass/style.scss */
+#mixer #player .play.active {
+  background-color: #1ca245;
+  opacity: 0.25;
+  box-shadow: inset 0px 0px 30px orange;
+  border: 2px solid rgba(100, 100, 100, 0.3);
+  animation: shake .2s ease-in-out;
+}
+/* line 251, ../sass/style.scss */
 #mixer .sc-bar {
   width: 100%;
   box-sizing: border-box;
@@ -325,7 +341,7 @@ footer a:hover {
   height: 500px;
   border-top: 1px dashed rgba(28, 130, 69, 0.5);
 }
-/* line 242, ../sass/style.scss */
+/* line 259, ../sass/style.scss */
 #mixer .sc-bar p.username {
   font-family: "Open Sans", sans-serif;
   display: none;
@@ -335,21 +351,21 @@ footer a:hover {
   color: #fff;
   vertical-align: middle;
 }
-/* line 252, ../sass/style.scss */
+/* line 269, ../sass/style.scss */
 #mixer .sc-bar .clickable:hover {
   cursor: pointer;
   color: #fff;
   background: rgba(28, 130, 69, 0.7);
   transition: all 0.5s ease;
 }
-/* line 259, ../sass/style.scss */
+/* line 276, ../sass/style.scss */
 #mixer .sc-bar .nav-items {
   width: 8%;
   position: absolute;
   height: 100%;
   display: inline-block;
 }
-/* line 266, ../sass/style.scss */
+/* line 283, ../sass/style.scss */
 #mixer .sc-bar .sc-tracks {
   background: rgba(28, 130, 69, 0.4);
   display: block;
@@ -365,7 +381,7 @@ footer a:hover {
   margin: 0;
   transition: all 0.5s ease;
 }
-/* line 282, ../sass/style.scss */
+/* line 299, ../sass/style.scss */
 #mixer .sc-bar .sc-reposts {
   background: rgba(28, 130, 69, 0.4);
   display: block;
@@ -381,7 +397,7 @@ footer a:hover {
   margin: 0;
   transition: all 0.5s ease;
 }
-/* line 298, ../sass/style.scss */
+/* line 315, ../sass/style.scss */
 #mixer .sc-bar .sc-favs {
   display: block;
   width: 100%;
@@ -397,7 +413,7 @@ footer a:hover {
   margin: 0;
   transition: all 0.5s ease;
 }
-/* line 314, ../sass/style.scss */
+/* line 331, ../sass/style.scss */
 #mixer .sc-bar .tracklist {
   width: 100%;
   margin-top: 50px;
@@ -408,7 +424,7 @@ footer a:hover {
   color: #fff;
   font-size: 12px;
 }
-/* line 324, ../sass/style.scss */
+/* line 341, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item {
   width: 200px;
   vertical-align: top;
@@ -418,12 +434,12 @@ footer a:hover {
   display: inline-block;
   border: 1px solid rgba(28, 130, 69, 0.4);
 }
-/* line 333, ../sass/style.scss */
+/* line 350, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .infos {
   display: inline-block;
   vertical-align: top;
 }
-/* line 339, ../sass/style.scss */
+/* line 356, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .cover {
   margin: 0 auto;
   width: 100px;
@@ -431,7 +447,7 @@ footer a:hover {
   height: 100px;
   border: 1px solid #fff;
 }
-/* line 346, ../sass/style.scss */
+/* line 363, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .bpm {
   display: block;
   vertical-align: middle;
@@ -439,7 +455,7 @@ footer a:hover {
   background: rgba(28, 130, 69, 0.4);
   padding: 5px;
 }
-/* line 353, ../sass/style.scss */
+/* line 370, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .artist {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -448,7 +464,7 @@ footer a:hover {
   padding: 5px;
   font-weight: 300italic;
 }
-/* line 362, ../sass/style.scss */
+/* line 379, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .name {
   margin-bottom: 10px;
   font-size: 14px;
@@ -456,7 +472,7 @@ footer a:hover {
   padding: 5px;
   font-weight: 300italic;
 }
-/* line 370, ../sass/style.scss */
+/* line 387, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .deck {
   display: inline-block;
   vertical-align: middle;
@@ -467,13 +483,13 @@ footer a:hover {
   background: #1c8245;
   padding: 5px;
 }
-/* line 380, ../sass/style.scss */
+/* line 397, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .deck:hover {
   background: rgba(28, 130, 69, 0.4);
   cursor: pointer;
 }
 
-/* line 392, ../sass/style.scss */
+/* line 409, ../sass/style.scss */
 #vid-overlay {
   position: absolute !important;
   top: 0;
