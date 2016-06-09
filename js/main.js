@@ -4,7 +4,7 @@ var mixVal = {
   _data : {
     AUTH : false,
     CLIENTID : 'df0870cdaf901a641c6a00c36a0855f9',
-    CALLBACKURL : 'http://localhost/mixval/callback.html',
+    CALLBACKURL : 'http://localhost/mixval2/callback.html',
     USERNAME : '',
 
   },
