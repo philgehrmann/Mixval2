@@ -35,8 +35,9 @@ var mixVal = {
   },
 
   playDeck1 : function(e){
-    console.log(e);
-    console.log("asdasd");
+    SC.stream('/tracks/246062897').then(function(player){
+      player.play();
+    });
   },
 
   _checkAuth : function(){
