@@ -298,27 +298,20 @@ position:relative;
 
     }
 
-    .play.one {
-      width: 100px;
-      height: 50px;
-      background-color: $buttonLila;
-      display: block;
-      float:right;
-      &:hover {
-        background-color: $lightlila;
-        opacity: 0.25;
-        box-shadow: inset 0px 0px 30px orange;
-        border: 2px solid rgba(100,100,100,0.3);
-        animation: shake .2s ease-in-out;
-      }
-    }
-
+  .fader {
+    transform: rotate(-90deg);
+    display: block;
+    margin: 0 auto;
+    height: 200px;
+    width: 100px;
+  }
   }
   .sc-bar{
     width:100%;
-    position: absolute;
-    top:550px;
     box-sizing: border-box;
+    position:absolute;
+    bottom:0;
+    top:550px;
     height:500px;
     border-top:1px dashed rgba(28,130,69, 0.5);
 
