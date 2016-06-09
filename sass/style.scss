@@ -231,6 +231,23 @@ position:relative;
   &.active{
     display:block;
   }
+  #player {
+    .play {
+      width: 100px;
+      height: 100px;
+      background-color: $buttonLila;
+      display: block;
+      margin: 0 auto;
+      &.active {
+        background-color: $lightlila;
+        opacity: 0.25;
+        box-shadow: inset 0px 0px 30px orange;
+        border: 2px solid rgba(100,100,100,0.3);
+        animation: shake .2s ease-in-out;
+      }
+    }
+
+  }
   .sc-bar{
     width:100%;
     box-sizing: border-box;
