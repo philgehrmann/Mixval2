@@ -317,7 +317,7 @@ footer a:hover {
   display: block;
 }
 /* line 235, ../sass/style.scss */
-#mixer #player .play {
+#mixer #player1 .play.one {
   width: 100px;
   height: 100px;
   background-color: #1c8245;
@@ -325,7 +325,7 @@ footer a:hover {
   margin: 0 auto;
 }
 /* line 241, ../sass/style.scss */
-#mixer #player .play.active {
+#mixer #player1 .play.one.active {
   background-color: #1ca245;
   opacity: 0.25;
   box-shadow: inset 0px 0px 30px orange;

@@ -26,11 +26,17 @@ var mixVal = {
 
   // mixVal._checkAuth();
   mixVal._resizeVideo();
-  mixVal._listener();
   },
 
   _listener : function(){
+ var playBtn = document.querySelectorAll('.play.one')[0];
+ console.log(playBtn);
+   playBtn.addEventListener("click" , mixVal.playDeck1);
+  },
 
+  playDeck1 : function(e){
+    console.log(e);
+    console.log("asdasd");
   },
 
   _checkAuth : function(){
@@ -107,7 +113,7 @@ var mixVal = {
   SC.connect().then(function() {
       return SC.get('/me');
     }).then(function(me) {
-
+      mixVal._listener();
       mixVal._userData.ID = me.id;
       mixVal._data.AUTH = true;
       $("#firstpage").toggleClass("active");
@@ -140,7 +146,7 @@ var mixVal = {
     var TrackitemWrapper = document.getElementsByClassName('tracklist')[0];
     for (var song in tracks){
       console.log(tracks[song]);
-      TrackitemWrapper.innerHTML += '<div class="track-item"><p class="name">'+tracks[song].title+'</p><img class="cover" src="'+tracks[song].artwork_url+'" /><div class="infos"><p class="artist"></p></div><p class="bpm">'+tracks[song].bpm+'</p><p data-track="'+tracks[song].stream_url
+      TrackitemWrapper.innerHTML += '<div class="track-item"><p class="name">'+tracks[song].title+'</p><img class="cover" src="" /><div class="infos"><p class="artist"></p></div><p class="bpm">'+tracks[song].bpm+'</p><p data-track="'+tracks[song].stream_url
 +'"class="one deck">Deck1</p><p class="two deck">Deck2</p></div>';
     }
     TrackitemWrapper.innerHTML = myTracks;

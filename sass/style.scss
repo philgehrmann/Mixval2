@@ -231,8 +231,8 @@ position:relative;
   &.active{
     display:block;
   }
-  #player {
-    .play {
+  #player1 {
+    .play.one {
       width: 100px;
       height: 100px;
       background-color: $buttonLila;
