@@ -1,0 +1,484 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,600);
+/* line 5, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 3, ../sass/style.scss */
+body {
+  background: black url("http://www.transparenttextures.com/patterns/cross-stripes.png");
+  font-family: "Open Sans", sans-serif;
+}
+/* line 7, ../sass/style.scss */
+body .subtext {
+  font-size: 10px;
+}
+/* line 11, ../sass/style.scss */
+body #vid {
+  position: absolute !important;
+  top: 0;
+  z-index: -2 !important;
+  -webkit-filter: contrast(100%) brightness(70%) sepia(30%) grayscale(76%) blur(0px);
+  filter: contrast(100%) brightness(70%) sepia(30%) grayscale(76%) blur(0px);
+}
+/* line 19, ../sass/style.scss */
+body .author-text {
+  position: absolute;
+  font-weight: 100;
+  color: rgba(255, 255, 255, 0.2);
+  bottom: 60px;
+  left: 10px;
+  left: 30px;
+  font-size: 8px;
+  line-height: 12px;
+}
+/* line 30, ../sass/style.scss */
+body input[type='text'] {
+  padding: 20px;
+  border: 0;
+  width: 700px;
+  text-align: center;
+  font-size: 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-sizing: border-box;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+}
+/* line 45, ../sass/style.scss */
+body input[type='text']:placeholder-shown {
+  font-size: 14px;
+  color: #1c8245;
+  font-weight: 100;
+}
+/* line 50, ../sass/style.scss */
+body input[type='text']::-webkit-input-placeholder {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 100;
+}
+/* line 56, ../sass/style.scss */
+body input[type='text']:focus {
+  outline: none;
+}
+
+/* line 61, ../sass/style.scss */
+#content {
+  box-sizing: border-box;
+  padding: 45px;
+  color: #fff;
+}
+/* line 67, ../sass/style.scss */
+#content .login {
+  margin: 0 auto;
+  width: 700px;
+  margin-top: 35%;
+}
+/* line 72, ../sass/style.scss */
+#content .login .logn-btn-wrapper {
+  width: 700px;
+}
+/* line 74, ../sass/style.scss */
+#content .login .logn-btn-wrapper .login-btn {
+  width: 350px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-sizing: border-box;
+  color: #fff;
+  background: rgba(28, 130, 69, 0.5);
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 300;
+  transition: all 1s ease;
+}
+/* line 90, ../sass/style.scss */
+#content .login .logn-btn-wrapper .login-btn.active {
+  background: #1c8245;
+}
+/* line 94, ../sass/style.scss */
+#content .login .logn-btn-wrapper .login-btn:hover {
+  cursor: pointer;
+  background: #fff;
+  color: #1c8245;
+  background: transparent;
+  transition: all 0.5s ease;
+}
+
+/* line 105, ../sass/style.scss */
+header {
+  width: 100%;
+  display: block;
+  position: fixed;
+  z-index: 6;
+  padding: 20px;
+  box-sizing: border-box;
+}
+/* line 113, ../sass/style.scss */
+header #nav {
+  padding: 40px;
+  width: 30px;
+  display: inline-block;
+  background: transparent;
+  transition: background 0.5s ease;
+}
+/* line 119, ../sass/style.scss */
+header #nav:hover {
+  background: #1c8245;
+  transition: background 0.5s ease;
+  cursor: pointer;
+}
+/* line 124, ../sass/style.scss */
+header #nav:hover .nav-btn {
+  background: #fff;
+  transition: background 0.8s ease;
+}
+/* line 127, ../sass/style.scss */
+header #nav:hover .nav-btn:before, header #nav:hover .nav-btn:after {
+  background: #fff;
+  transition: background 0.8s ease;
+}
+/* line 132, ../sass/style.scss */
+header #nav .nav-btn {
+  width: 30px;
+  height: 1px;
+  background: #1c8245;
+  transition: background 0.2s ease;
+}
+/* line 138, ../sass/style.scss */
+header #nav .nav-btn:before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  margin-top: -7px;
+  background: #1c8245;
+  transition: background 0.2s ease;
+}
+/* line 147, ../sass/style.scss */
+header #nav .nav-btn:after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  margin-top: 7px;
+  height: 1px;
+  background: #1c8245;
+  transition: background 0.2s ease;
+}
+/* line 158, ../sass/style.scss */
+header .logo {
+  float: right;
+  display: inline;
+  margin-top: 10px;
+}
+
+/* line 165, ../sass/style.scss */
+footer {
+  width: 100%;
+  display: block;
+  padding: 5px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+}
+/* line 176, ../sass/style.scss */
+footer a {
+  text-decoration: none;
+  color: rgba(28, 130, 69, 0.5);
+  margin-left: 40px;
+  margin-right: 40px;
+  transition: all 0.5s ease;
+}
+/* line 182, ../sass/style.scss */
+footer a:hover {
+  color: #f4f4f4;
+  transition: all 0.5s ease;
+}
+
+/* line 188, ../sass/style.scss */
+#overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  display: none;
+  transition: all 0.5s ease;
+  vertical-align: middle;
+  text-align: center;
+  padding-top: 25%;
+  color: #1c8245;
+}
+/* line 200, ../sass/style.scss */
+#overlay i {
+  vertical-align: middle;
+}
+/* line 203, ../sass/style.scss */
+#overlay p {
+  font-weight: 100;
+  font-size: 10px;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+/* line 209, ../sass/style.scss */
+#overlay.active {
+  display: block;
+  transition: all 0.5s ease;
+}
+
+/* line 215, ../sass/style.scss */
+#firstpage {
+  width: 100%;
+  z-index: 5;
+  position: absolute;
+  display: none;
+}
+/* line 222, ../sass/style.scss */
+#firstpage.active {
+  display: block;
+}
+
+/* line 226, ../sass/style.scss */
+#mixer {
+  position: relative;
+  z-index: 5;
+  display: none;
+}
+/* line 231, ../sass/style.scss */
+#mixer.active {
+  display: block;
+}
+/* line 234, ../sass/style.scss */
+#mixer .sc-bar {
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  height: 500px;
+  border-top: 1px dashed rgba(28, 130, 69, 0.5);
+}
+/* line 242, ../sass/style.scss */
+#mixer .sc-bar p.username {
+  font-family: "Open Sans", sans-serif;
+  display: none;
+  font-weight: 300;
+  margin-top: 10px;
+  font-size: 32px;
+  color: #fff;
+  vertical-align: middle;
+}
+/* line 252, ../sass/style.scss */
+#mixer .sc-bar .clickable:hover {
+  cursor: pointer;
+  color: #fff;
+  background: rgba(28, 130, 69, 0.7);
+  transition: all 0.5s ease;
+}
+/* line 259, ../sass/style.scss */
+#mixer .sc-bar .nav-items {
+  width: 8%;
+  position: absolute;
+  height: 100%;
+  display: inline-block;
+}
+/* line 266, ../sass/style.scss */
+#mixer .sc-bar .sc-tracks {
+  background: rgba(28, 130, 69, 0.4);
+  display: block;
+  width: 100%;
+  height: 33%;
+  border-right: 1px dashed rgba(28, 130, 69, 0.5);
+  color: #fff;
+  text-align: center;
+  padding-top: 70px;
+  font-size: 14px;
+  box-sizing: border-box;
+  font-weight: 300;
+  margin: 0;
+  transition: all 0.5s ease;
+}
+/* line 282, ../sass/style.scss */
+#mixer .sc-bar .sc-reposts {
+  background: rgba(28, 130, 69, 0.4);
+  display: block;
+  width: 100%;
+  height: 33%;
+  border-right: 1px dashed rgba(28, 130, 69, 0.5);
+  color: #fff;
+  text-align: center;
+  padding-top: 70px;
+  font-size: 14px;
+  box-sizing: border-box;
+  font-weight: 300;
+  margin: 0;
+  transition: all 0.5s ease;
+}
+/* line 298, ../sass/style.scss */
+#mixer .sc-bar .sc-favs {
+  display: block;
+  width: 100%;
+  background: rgba(28, 130, 69, 0.4);
+  height: 33%;
+  border-right: 1px dashed rgba(28, 130, 69, 0.5);
+  color: #fff;
+  text-align: center;
+  padding-top: 70px;
+  font-size: 14px;
+  box-sizing: border-box;
+  font-weight: 300;
+  margin: 0;
+  transition: all 0.5s ease;
+}
+/* line 314, ../sass/style.scss */
+#mixer .sc-bar .tracklist {
+  width: 100%;
+  margin-top: 50px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: inline-block;
+  color: #fff;
+  font-size: 12px;
+}
+/* line 324, ../sass/style.scss */
+#mixer .sc-bar .tracklist .track-item {
+  width: 200px;
+  vertical-align: top;
+  height: 250px;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid rgba(28, 130, 69, 0.4);
+}
+/* line 333, ../sass/style.scss */
+#mixer .sc-bar .tracklist .track-item .infos {
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 339, ../sass/style.scss */
+#mixer .sc-bar .tracklist .track-item .cover {
+  margin: 0 auto;
+  width: 100px;
+  display: block;
+  height: 100px;
+  border: 1px solid #fff;
+}
+/* line 346, ../sass/style.scss */
+#mixer .sc-bar .tracklist .track-item .bpm {
+  display: block;
+  vertical-align: middle;
+  text-align: center;
+  background: rgba(28, 130, 69, 0.4);
+  padding: 5px;
+}
+/* line 353, ../sass/style.scss */
+#mixer .sc-bar .tracklist .track-item .artist {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  vertical-align: top;
+  padding: 5px;
+  font-weight: 300italic;
+}
+/* line 362, ../sass/style.scss */
+#mixer .sc-bar .tracklist .track-item .name {
+  margin-bottom: 10px;
+  font-size: 14px;
+  vertical-align: top;
+  padding: 5px;
+  font-weight: 300italic;
+}
+/* line 370, ../sass/style.scss */
+#mixer .sc-bar .tracklist .track-item .deck {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  width: 50%;
+  box-sizing: border-box;
+  height: 25px;
+  background: #1c8245;
+  padding: 5px;
+}
+/* line 380, ../sass/style.scss */
+#mixer .sc-bar .tracklist .track-item .deck:hover {
+  background: rgba(28, 130, 69, 0.4);
+  cursor: pointer;
+}
+
+/* line 392, ../sass/style.scss */
+#vid-overlay {
+  position: absolute !important;
+  top: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.6) url("http://www.transparenttextures.com/patterns/cross-stripes.png");
+  -webkit-filter: contrast(100%) brightness(70%) sepia(30%) grayscale(76%) blur(0px);
+  filter: contrast(100%) brightness(70%) sepia(30%) grayscale(76%) blur(0px);
+}
