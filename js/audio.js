@@ -10,6 +10,7 @@ var context = new AudioContext(),
 audio.crossOrigin = "anonymous";
 audio.src = url;
 source = context.createMediaElementSource(audio);
+// source.mediaElement.play();
 
 
 // Fader
@@ -18,7 +19,7 @@ gainNode.gain.value = 1;
 gainNode.connect(filter);
 
 // Filter
-filter.type = 'lowpass'; 
+filter.type = 'lowpass';
 filter.frequency.value = 4440;
 filter.connect(context.destination);
 
@@ -52,9 +53,3 @@ window.onload = function () {
 		gainNode.gain.value = this.value;
   });
 };
-
-
-
-
-
-

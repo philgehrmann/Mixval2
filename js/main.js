@@ -1,3 +1,4 @@
+
 var mixVal = {
 
 
@@ -64,6 +65,7 @@ var mixVal = {
       mixVal._Deck1.artwork_url = track.artwork_url;
       mixVal._Deck1.genre = track.genre;
       mixVal._Deck1.stream_url = track.stream_url;
+
       mixVal.makeDeck1();
     });
   },
@@ -103,8 +105,23 @@ var mixVal = {
     },
 
 
-  playDeck1 : function(TrackID){
+  playDeck1 : function(){
 
+    console.log("asd");
+    var context = new AudioContext(),
+        gainNode = context.createGain(),
+        filter = context.createBiquadFilter(),
+        reverb = context.createConvolver(),
+        audio = new Audio(),
+        source,
+        url = 'https://api.soundcloud.com/tracks/'+mixVal._Deck1.ID+'/stream' +
+              '?client_id='+mixVal._data.CLIENTID;
+
+    audio.crossOrigin = "anonymous";
+    audio.src = url;
+    source = context.createMediaElementSource(audio);
+    source.mediaElement.play();
+    source.connect(context.destination);
   },
 
 
@@ -183,7 +200,7 @@ var mixVal = {
   SC.connect().then(function() {
       return SC.get('/me');
     }).then(function(me) {
-
+console.log(me);
       mixVal._userData.ID = me.id;
       mixVal._data.AUTH = true;
       $("#firstpage").toggleClass("active");
@@ -199,7 +216,7 @@ var mixVal = {
 
       var my = JSON.stringify(me);
       window.localStorage.setItem("scAuth", my);
-      console.log(me);
+
     });
   },
 
