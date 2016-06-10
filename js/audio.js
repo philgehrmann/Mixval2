@@ -19,7 +19,7 @@ gainNode.gain.value = 1;
 gainNode.connect(filter);
 
 // Filter
-filter.type = 'lowpass';
+filter.type = 'allpass';
 filter.frequency.value = 4440;
 filter.connect(context.destination);
 
@@ -49,7 +49,103 @@ reverb.buffer = reverbBuffer;
 // Fader Control
 // document.querySelector('.fader').value = '1';
 window.onload = function () {
-  document.querySelector('.fader').addEventListener('change', function() {
+
+  document.querySelector('.fader input').addEventListener('change', function() {
 		gainNode.gain.value = this.value;
   });
-};
+
+
+  var midi, data;
+
+  if(navigator.requestMIDIAccess){
+  	navigator.requestMIDIAccess({sysex: false}).then(onMIDISuccess, onMIDIFailure);
+  }
+  else {
+  	alert("No MIDI support in your browser.");
+  }
+
+ 
+  function onMIDISuccess(midiAccess) {
+    midi = midiAccess; 
+    var inputs = midi.inputs.values();
+    for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
+        input.value.onmidimessage = onMIDIMessage;
+    }
+  }
+
+  function onMIDIFailure(error) {
+      console.log("Midi haste nicht... MÖÖÖÖP" + error);
+  }
+
+  function onMIDIMessage(event) {
+    data = event.data,
+    // cmd = data[0] >> 4,
+    // channel = data[0] & 0xf,
+    // type = data[0] & 0xf0,
+    note = data[1],
+    velocity = data[2];
+
+    switch (note) {
+
+    		// Deck1 Fader
+        case 1: 
+        	console.log('Fader auf ' + velocity);
+        break;
+
+        // Play     
+        case 2: 
+        	if (velocity === 127) {
+	          console.log('Hier kommt die Play funktion');
+	        }
+	      break;
+
+	      // PAUSE
+        case 3: 
+        	if (velocity === 127) {
+	          console.log('Hier kommt die Pause funktion');
+	        }
+	      break;
+
+    		// Filter
+        case 4: 
+        	console.log('Filter auf ' + velocity);
+        break;
+
+    		// Deck2 Fader
+        case 5: 
+        	console.log('Fader auf ' + velocity);
+        break;
+
+        // Play     
+        case 6: 
+        	if (velocity === 127) {
+	          console.log('Hier kommt die Play funktion');
+	        }
+	      break;
+
+	      // PAUSE
+        case 7: 
+        	if (velocity === 127) {
+	          console.log('Hier kommt die Pause funktion');
+	        }
+	      break;
+
+    		// Filter
+        case 8: 
+        	console.log('Filter auf ' + velocity);
+        break;
+    }
+
+    // console.log('MIDI data', data);
+	}
+
+}
+
+
+
+
+
+
+
+
+
