@@ -261,7 +261,7 @@ playBtn.addEventListener("click" , mixVal.pauseDeck2);
 
     var TrackitemWrapper = document.getElementsByClassName('tracklist')[0];
     for (var song in tracks){
-      TrackitemWrapper.innerHTML += '<div class="track-item"><p class="name">'+tracks[song].title+'</p><img class="cover" src="" /><div class="infos"><p class="artist"></p></div><p class="bpm">'+tracks[song].bpm+'</p><p data-track="'+tracks[song].id
+      TrackitemWrapper.innerHTML += '<div class="track-item"><p class="name">'+tracks[song].title+'</p><img class="cover" src="'+tracks[song].artwork_url+'" /><div class="infos"><p class="artist"></p></div><p class="bpm">'+tracks[song].bpm+'</p><p data-track="'+tracks[song].id
 +'"class="one deck" onclick="mixVal.setDeck1($(this));">Deck1</p><p onclick="mixVal.setDeck2($(this));"data-track="'+tracks[song].id+'" class="two deck">Deck2</p></div>';
     }
     TrackitemWrapper.innerHTML = myTracks;
@@ -287,17 +287,18 @@ playBtn.addEventListener("click" , mixVal.pauseDeck2);
 
 $(function(){
   mixVal.init();
-  test = new SoundItem('267975150');
-  console.log(test);
+  checkMidiAccess();
+  song = new SoundItem('261496737');
 });
 
 var SoundItem = (function(trackID){
 
   var _self = this;
   var trackID = trackID;
-  var context, gainNode, filter, reverb, audio, source,url;
+  var context, gainNode, filter, reverb, audio, source, url;
 
   function init(){
+
     _self.createNewSound();
     audio.crossOrigin = "anonymous";
     audio.src = url;
@@ -318,10 +319,10 @@ var SoundItem = (function(trackID){
   this.setOutput = function(){
       source.connect(gainNode);
       gainNode.gain.value = 1;
-      gainNode.connect(context.destination);
+      gainNode.connect(filter);
     }
   this.setVolume = function(aktValue){
-      gainNode.gain.value = aktValue / 128;
+      gainNode.gain.value = aktValue / 127;
     }
 
   this.play = function(){
@@ -329,8 +330,14 @@ var SoundItem = (function(trackID){
   }
 
   this.pause = function(){
-    console.log("sd");
     source.mediaElement.pause();
+  }
+
+  this.setFilterLow = function(val){
+
+    filter.type = 'allpass';
+    filter.frequency.value = val;
+    filter.connect(context.destination);
   }
 
   this.destroy = function(){
@@ -341,3 +348,85 @@ var SoundItem = (function(trackID){
   return this;
 
 });
+
+var midi, data;
+
+function checkMidiAccess(){
+  if(navigator.requestMIDIAccess){
+    navigator.requestMIDIAccess({sysex: false}).then(onMIDISuccess, onMIDIFailure);
+  }
+  else {
+    alert("No MIDI support in your browser.");
+  }
+}
+function onMIDISuccess(midiAccess) {
+
+  midi = midiAccess;
+  var inputs = midi.inputs.values();
+  for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
+      input.value.onmidimessage = onMIDIMessage;
+  }
+}
+function onMIDIMessage(event) {
+  data = event.data,
+  // cmd = data[0] >> 4,
+  // channel = data[0] & 0xf,
+  // type = data[0] & 0xf0,
+  note = data[1],
+  velocity = data[2];
+
+  switch (note) {
+
+      // Deck1 Fader
+      case 1:
+        mixVal._song1.setVolume(velocity);
+      break;
+
+      // Play
+      case 2:
+        if (velocity === 127) {
+           mixVal._song1.play();
+        }
+      break;
+
+      // PAUSE
+      case 3:
+        if (velocity === 127) {
+          mixVal._song1.pause();
+        }
+      break;
+
+      // Filter
+      case 4:
+        console.log('Filter auf ' + velocity);
+      break;
+
+      // Deck2 Fader
+      case 5:
+        mixVal._song2.setVolume(velocity);
+      break;
+
+      // Play
+      case 6:
+        if (velocity === 127) {
+           mixVal._song2.play();
+        }
+      break;
+
+      // PAUSE
+      case 7:
+        if (velocity === 127) {
+           mixVal._song2.pause();
+        }
+      break;
+
+      // Filter
+      case 8:
+        mixVal._song2.setFilterLow(velocity);
+      break;
+  }
+}
+
+function onMIDIFailure(error) {
+    console.log("Midi haste nicht... MÖÖÖÖP" + error);
+}
