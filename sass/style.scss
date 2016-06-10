@@ -62,12 +62,30 @@ body{
   box-sizing: border-box;
   padding:45px;
   color:$white;
+.headline{
+  text-align: center;
+  font-size: 120px;
+  position: absolute;
+  color:$buttonLila;
+  font-weight:600;
+  top:300px;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%,-50%);
 
+  span{
+    color:$white;
+  }
+}
 
   .login{
     margin:0 auto;
+    position: absolute;
     width:700px;
-    margin-top:35%;
+    left: 50%;
+    top:50%;
+    margin-top:100px;
+    transform: translate(-50%,-50%);
 
     .logn-btn-wrapper{
       width:700px;
@@ -298,7 +316,7 @@ box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.8);
   }
 }
   #player1, #player2 {
-    width:375px;
+    width:49%;
         vertical-align: top;
     display:inline-block;
     height:550px;
@@ -316,21 +334,32 @@ box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.8);
     }
     .wave{
       width:100%;
+      position: relative;
       height: 75px;
       box-sizing: border-box;
-          border-bottom: 1px dashed $buttonLila;
       color:$buttonLila;
+
+      .pointer{
+        position: absolute;
+        height:100%;
+        left:0;
+        background-color:rgba(28,130,69, 0.5);
+        width:0px;
+        z-index:5;
+      }
 
 
       img{
         width:100%;
+        height:75px;
+        display:block;
       }
     }
     .wheel{
-    width: 70%;
+    width: 40%;
     border-radius: 50%;
     /* padding: 10px; */
-    height: 240px;
+    margin-top:25px;
     box-sizing: border-box;
     color: #1c8245;
     text-align: center;
@@ -516,7 +545,12 @@ box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.8);
         padding:10px;
         text-align: center;
         display:inline-block;
-        border:1px solid rgba(28,130,69, 0.4);
+        margin:10px;
+
+        &:hover{
+          background:rgba(255,255,255,0.3);
+          cursor:pointer;
+        }
 
         .infos{
             display:inline-block;
@@ -553,15 +587,19 @@ box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.8);
         font-size: 14px;
         vertical-align: top;
         padding:5px;
+        height:60px;
         font-weight: 300italic;
       }
       .deck{
-        display:inline-block;
+        display:block;
         vertical-align: middle;
         text-align: center;
+        margin-bottom:20px;
         width:50%;
         box-sizing: border-box;
         height:25px;
+        margin:0 auto;
+        margin-left:50px;
         background:rgba(28,130,69, 1);
         padding:5px;
 
