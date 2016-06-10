@@ -327,15 +327,27 @@ box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.8);
       }
     }
     .wheel{
-    width: 80%;
+    width: 70%;
     border-radius: 50%;
     /* padding: 10px; */
-    height: 248px;
+    height: 240px;
     box-sizing: border-box;
     color: #1c8245;
     text-align: center;
     overflow: hidden;
       margin:0 auto;
+
+      &.spin{
+            -webkit-animation: rotate-wheel 3s linear;
+            -moz-animation:    rotate-wheel 3s linear; /* Fx 5+ */
+              -o-animation:      rotate-wheel 3s linear; /* Opera 12+ */
+              animation:            rotate-wheel 3s linear; /* IE 10+, Fx 29+ */
+              animation-direction: normal;
+              animation-iteration-count:infinite;
+              -webkit-literation-count:infinite;
+              -webkit-animation-direction: normal;
+
+      }
 
 
       img{
@@ -573,4 +585,15 @@ box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.8);
 
   -webkit-filter: contrast(100%) brightness(70%) sepia(30%) grayscale(76%) blur(0px);
  filter: contrast(100%) brightness(70%) sepia(30%) grayscale(76%) blur(0px);
+}
+
+@-webkit-keyframes rotate-wheel {
+  0%   { transform:rotate(0deg); }
+  100% { transform:rotate(360deg); }
+}
+
+@keyframes rotate-wheel {
+  0%   { transform:rotate(0deg); }
+  100% { transform:rotate(360deg); }
+
 }
