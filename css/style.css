@@ -413,21 +413,35 @@ footer a:hover {
 }
 /* line 329, ../sass/style.scss */
 #mixer #player1 .wheel, #mixer #player2 .wheel {
-  width: 80%;
+  width: 70%;
   border-radius: 50%;
   /* padding: 10px; */
-  height: 248px;
+  height: 240px;
   box-sizing: border-box;
   color: #1c8245;
   text-align: center;
   overflow: hidden;
   margin: 0 auto;
 }
-/* line 341, ../sass/style.scss */
+/* line 340, ../sass/style.scss */
+#mixer #player1 .wheel.spin, #mixer #player2 .wheel.spin {
+  -webkit-animation: rotate-wheel 3s linear;
+  -moz-animation: rotate-wheel 3s linear;
+  /* Fx 5+ */
+  -o-animation: rotate-wheel 3s linear;
+  /* Opera 12+ */
+  animation: rotate-wheel 3s linear;
+  /* IE 10+, Fx 29+ */
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+  -webkit-literation-count: infinite;
+  -webkit-animation-direction: normal;
+}
+/* line 353, ../sass/style.scss */
 #mixer #player1 .wheel img, #mixer #player2 .wheel img {
   width: 100%;
 }
-/* line 347, ../sass/style.scss */
+/* line 359, ../sass/style.scss */
 #mixer #player1 .buttons, #mixer #player2 .buttons {
   width: 303px;
   margin: 0 auto;
@@ -436,7 +450,7 @@ footer a:hover {
   box-sizing: border-box;
   color: #1c8245;
 }
-/* line 355, ../sass/style.scss */
+/* line 367, ../sass/style.scss */
 #mixer #player1 .buttons .play, #mixer #player2 .buttons .play {
   width: 98px;
   float: right;
@@ -448,7 +462,7 @@ footer a:hover {
   border-radius: 10px;
   display: inline-block;
 }
-/* line 367, ../sass/style.scss */
+/* line 379, ../sass/style.scss */
 #mixer #player1 .buttons .pause, #mixer #player2 .buttons .pause {
   width: 98px;
   height: 50px;
@@ -460,7 +474,7 @@ footer a:hover {
   border-radius: 10px;
   display: inline-block;
 }
-/* line 379, ../sass/style.scss */
+/* line 391, ../sass/style.scss */
 #mixer #player1 .buttons .cue, #mixer #player2 .buttons .cue {
   width: 98px;
   height: 50px;
@@ -472,14 +486,14 @@ footer a:hover {
   border: 1px dashed #1c8245;
   display: inline-block;
 }
-/* line 393, ../sass/style.scss */
+/* line 405, ../sass/style.scss */
 #mixer #player1 .buttons .play:hover, #mixer #player1 .buttons .pause:hover, #mixer #player1 .buttons .cue:hover, #mixer #player2 .buttons .play:hover, #mixer #player2 .buttons .pause:hover, #mixer #player2 .buttons .cue:hover {
   cursor: pointer;
   background: #1c8245;
   color: #fff;
   transition: all 0.5s ease;
 }
-/* line 403, ../sass/style.scss */
+/* line 415, ../sass/style.scss */
 #mixer #player1 .fader, #mixer #player2 .fader {
   transform: rotate(-90deg);
   display: block;
@@ -487,7 +501,7 @@ footer a:hover {
   height: 200px;
   width: 100px;
 }
-/* line 411, ../sass/style.scss */
+/* line 423, ../sass/style.scss */
 #mixer .sc-bar {
   width: 100%;
   box-sizing: border-box;
@@ -497,7 +511,7 @@ footer a:hover {
   height: 500px;
   border-top: 1px dashed rgba(28, 130, 69, 0.5);
 }
-/* line 420, ../sass/style.scss */
+/* line 432, ../sass/style.scss */
 #mixer .sc-bar p.username {
   font-family: "Open Sans", sans-serif;
   display: none;
@@ -507,21 +521,21 @@ footer a:hover {
   color: #fff;
   vertical-align: middle;
 }
-/* line 430, ../sass/style.scss */
+/* line 442, ../sass/style.scss */
 #mixer .sc-bar .clickable:hover {
   cursor: pointer;
   color: #fff;
   background: rgba(28, 130, 69, 0.7);
   transition: all 0.5s ease;
 }
-/* line 437, ../sass/style.scss */
+/* line 449, ../sass/style.scss */
 #mixer .sc-bar .nav-items {
   width: 8%;
   position: absolute;
   height: 100%;
   display: inline-block;
 }
-/* line 444, ../sass/style.scss */
+/* line 456, ../sass/style.scss */
 #mixer .sc-bar .sc-tracks {
   background: rgba(28, 130, 69, 0.4);
   display: block;
@@ -537,7 +551,7 @@ footer a:hover {
   margin: 0;
   transition: all 0.5s ease;
 }
-/* line 460, ../sass/style.scss */
+/* line 472, ../sass/style.scss */
 #mixer .sc-bar .sc-reposts {
   background: rgba(28, 130, 69, 0.4);
   display: block;
@@ -553,7 +567,7 @@ footer a:hover {
   margin: 0;
   transition: all 0.5s ease;
 }
-/* line 476, ../sass/style.scss */
+/* line 488, ../sass/style.scss */
 #mixer .sc-bar .sc-favs {
   display: block;
   width: 100%;
@@ -569,7 +583,7 @@ footer a:hover {
   margin: 0;
   transition: all 0.5s ease;
 }
-/* line 492, ../sass/style.scss */
+/* line 504, ../sass/style.scss */
 #mixer .sc-bar .tracklist {
   width: 100%;
   margin-top: 50px;
@@ -578,7 +592,7 @@ footer a:hover {
   color: #fff;
   font-size: 12px;
 }
-/* line 500, ../sass/style.scss */
+/* line 512, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item {
   width: 200px;
   vertical-align: top;
@@ -588,12 +602,12 @@ footer a:hover {
   display: inline-block;
   border: 1px solid rgba(28, 130, 69, 0.4);
 }
-/* line 509, ../sass/style.scss */
+/* line 521, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .infos {
   display: inline-block;
   vertical-align: top;
 }
-/* line 515, ../sass/style.scss */
+/* line 527, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .cover {
   margin: 0 auto;
   width: 100px;
@@ -601,7 +615,7 @@ footer a:hover {
   height: 100px;
   border: 1px solid #fff;
 }
-/* line 522, ../sass/style.scss */
+/* line 534, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .bpm {
   display: block;
   vertical-align: middle;
@@ -609,7 +623,7 @@ footer a:hover {
   background: rgba(28, 130, 69, 0.4);
   padding: 5px;
 }
-/* line 529, ../sass/style.scss */
+/* line 541, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .artist {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -618,7 +632,7 @@ footer a:hover {
   padding: 5px;
   font-weight: 300italic;
 }
-/* line 538, ../sass/style.scss */
+/* line 550, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .name {
   margin-bottom: 10px;
   font-size: 14px;
@@ -626,7 +640,7 @@ footer a:hover {
   padding: 5px;
   font-weight: 300italic;
 }
-/* line 546, ../sass/style.scss */
+/* line 558, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .deck {
   display: inline-block;
   vertical-align: middle;
@@ -637,13 +651,13 @@ footer a:hover {
   background: #1c8245;
   padding: 5px;
 }
-/* line 556, ../sass/style.scss */
+/* line 568, ../sass/style.scss */
 #mixer .sc-bar .tracklist .track-item .deck:hover {
   background: rgba(28, 130, 69, 0.4);
   cursor: pointer;
 }
 
-/* line 568, ../sass/style.scss */
+/* line 580, ../sass/style.scss */
 #vid-overlay {
   position: absolute !important;
   top: 0;
@@ -651,4 +665,21 @@ footer a:hover {
   background: rgba(0, 0, 0, 0.6) url("http://www.transparenttextures.com/patterns/cross-stripes.png");
   -webkit-filter: contrast(100%) brightness(70%) sepia(30%) grayscale(76%) blur(0px);
   filter: contrast(100%) brightness(70%) sepia(30%) grayscale(76%) blur(0px);
+}
+
+@-webkit-keyframes rotate-wheel {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate-wheel {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

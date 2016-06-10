@@ -1,6 +1,9 @@
 
 var mixVal = {
 
+  _song1 : '',
+  _song2 : '',
+
 
   _data : {
     AUTH : false,
@@ -53,8 +56,22 @@ var mixVal = {
    var playBtn = document.querySelectorAll('.play.two')[0];
   playBtn.addEventListener("click" , mixVal.playDeck2);
 
+  var playBtn = document.querySelectorAll('.pause.one')[0];
+ playBtn.addEventListener("click" , mixVal.pauseDeck1);
 
-  },
+ var playBtn = document.querySelectorAll('.pause.two')[0];
+playBtn.addEventListener("click" , mixVal.pauseDeck2);
+
+
+  document.querySelector('.deck.one .fader input').addEventListener('change', function() {
+    mixVal._song1.setVolume(this.value);
+  });
+
+  document.querySelector('.deck.two .fader input').addEventListener('change', function() {
+    mixVal._song2.setVolume(this.value);
+
+  });
+},
 
   setDeck1 : function(sound){
     soundID = sound.attr('data-track');
@@ -65,7 +82,12 @@ var mixVal = {
       mixVal._Deck1.artwork_url = track.artwork_url;
       mixVal._Deck1.genre = track.genre;
       mixVal._Deck1.stream_url = track.stream_url;
-
+      if(mixVal._song1 != ''){
+        mixVal._song1.destroy();
+        mixVal._song1 = new SoundItem(mixVal._Deck1.ID);
+      } else{
+          mixVal._song1 = new SoundItem(mixVal._Deck1.ID);
+        }
       mixVal.makeDeck1();
     });
   },
@@ -90,6 +112,12 @@ var mixVal = {
         mixVal._Deck2.artwork_url = track.artwork_url;
         mixVal._Deck2.genre = track.genre;
         mixVal._Deck2.stream_url = track.stream_url;
+        if(mixVal._song2 != ''){
+          mixVal._song2.destroy();
+          mixVal._song2 = new SoundItem(mixVal._Deck2.ID);
+        } else{
+            mixVal._song2 = new SoundItem(mixVal._Deck2.ID);
+          }
         mixVal.makeDeck2();
       });
     },
@@ -106,22 +134,23 @@ var mixVal = {
 
 
   playDeck1 : function(){
+    $("#player1 .wheel").addClass('spin');
+    mixVal._song1.play();
+  },
 
-    console.log("asd");
-    var context = new AudioContext(),
-        gainNode = context.createGain(),
-        filter = context.createBiquadFilter(),
-        reverb = context.createConvolver(),
-        audio = new Audio(),
-        source,
-        url = 'https://api.soundcloud.com/tracks/'+mixVal._Deck1.ID+'/stream' +
-              '?client_id='+mixVal._data.CLIENTID;
+  playDeck2 : function(){
+    $("#player2 .wheel").addClass('spin');
+    mixVal._song2.play();
+  },
 
-    audio.crossOrigin = "anonymous";
-    audio.src = url;
-    source = context.createMediaElementSource(audio);
-    source.mediaElement.play();
-    source.connect(context.destination);
+  pauseDeck1 : function(){
+    $("#player1 .wheel").removeClass('spin');
+    mixVal._song1.pause();
+  },
+
+  pauseDeck2 : function(){
+    $("#player2 .wheel").removeClass('spin');
+    mixVal._song2.pause();
   },
 
 
@@ -165,7 +194,7 @@ var mixVal = {
     var number = Math.floor((Math.random() * 5) + 1);
     $('#vid').tubular({
       videoId: 'QtXby3twMmI',
-      mute: false,
+      mute: true,
       repeat: true,
       wrapperZIndex: 0,
       start: 15
@@ -200,7 +229,6 @@ var mixVal = {
   SC.connect().then(function() {
       return SC.get('/me');
     }).then(function(me) {
-console.log(me);
       mixVal._userData.ID = me.id;
       mixVal._data.AUTH = true;
       $("#firstpage").toggleClass("active");
@@ -259,4 +287,57 @@ console.log(me);
 
 $(function(){
   mixVal.init();
+  test = new SoundItem('267975150');
+  console.log(test);
+});
+
+var SoundItem = (function(trackID){
+
+  var _self = this;
+  var trackID = trackID;
+  var context, gainNode, filter, reverb, audio, source,url;
+
+  function init(){
+    _self.createNewSound();
+    audio.crossOrigin = "anonymous";
+    audio.src = url;
+    source = context.createMediaElementSource(audio);
+    _self.setOutput();
+  }
+
+  this.createNewSound = function(){
+    context = new AudioContext();
+    gainNode = context.createGain();
+    filter = context.createBiquadFilter();
+    reverb = context.createConvolver();
+    audio = new Audio();
+    source;
+    url ='https://api.soundcloud.com/tracks/'+trackID+'/stream?client_id=df0870cdaf901a641c6a00c36a0855f9';
+  }
+
+  this.setOutput = function(){
+      source.connect(gainNode);
+      gainNode.gain.value = 1;
+      gainNode.connect(context.destination);
+    }
+  this.setVolume = function(aktValue){
+      gainNode.gain.value = aktValue / 128;
+    }
+
+  this.play = function(){
+    source.mediaElement.play();
+  }
+
+  this.pause = function(){
+    console.log("sd");
+    source.mediaElement.pause();
+  }
+
+  this.destroy = function(){
+    context.close();
+  }
+  init();
+
+  return this;
+
 });
