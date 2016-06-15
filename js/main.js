@@ -80,6 +80,16 @@ playBtn.addEventListener("click" , mixVal.stopDeck2);
     mixVal._song2.setVolume(this.value);
 
   });
+
+  document.querySelector('#player2 .pitch input').addEventListener('change', function() {
+    mixVal._song2.pitchSong(this.value / 1.5);
+
+  });
+
+  document.querySelector('#player1 .pitch input').addEventListener('change', function() {
+    mixVal._song1.pitchSong(this.value / 1.5);
+
+  });
 },
 
   setDeck1 : function(sound){
@@ -93,10 +103,15 @@ playBtn.addEventListener("click" , mixVal.stopDeck2);
       mixVal._Deck1.genre = track.genre;
       mixVal._Deck1.stream_url = track.stream_url;
       mixVal._Deck1.time = track.duration;
+      $("#player1 .wheel").removeClass('spin');
       if(mixVal._song1 != ''){
         mixVal._song1.destroy();
         mixVal._song1 = new SoundItem(mixVal._Deck1.ID);
+        // mixVal._song1.setFilterHigh(0);
+        // mixVal._song1.setFilterHigLow(0);
       } else{
+        // mixVal._song1.setFilterHigh(0);
+        // mixVal._song1.setFilterHigLow(0);
           mixVal._song1 = new SoundItem(mixVal._Deck1.ID);
         }
       mixVal.makeDeck1();
@@ -123,6 +138,7 @@ playBtn.addEventListener("click" , mixVal.stopDeck2);
         mixVal._Deck2.artwork_url = track.artwork_url;
         mixVal._Deck2.genre = track.genre;
         mixVal._Deck2.stream_url = track.stream_url;
+        $("#player2 .wheel").removeClass('spin');
         if(mixVal._song2 != ''){
           mixVal._song2.destroy();
           mixVal._song2 = new SoundItem(mixVal._Deck2.ID);
@@ -146,17 +162,17 @@ playBtn.addEventListener("click" , mixVal.stopDeck2);
 
   playDeck1 : function(){
     $("#player1 .wheel").addClass('spin');
-    $('#player1 .pointer').animate({
-      width: "100%"
-    },mixVal._Deck1.time);
+    // $('#player1 .pointer').animate({
+    //   width: "100%"
+    // },mixVal._Deck1.time);
     mixVal._song1.play();
   },
 
   playDeck2 : function(){
     $("#player2 .wheel").addClass('spin');
-    $('#player2 .pointer').animate({
-      width: "100%"
-    },mixVal._Deck2.time);
+    // $('#player2 .pointer').animate({
+    //   width: "100%"
+    // },mixVal._Deck2.time);
     $("#player2 .wheel").addClass('spin');
     mixVal._song2.play();
   },
@@ -267,7 +283,7 @@ playBtn.addEventListener("click" , mixVal.stopDeck2);
 
   _getFavorites: function(){
     var page_size = 100;
-    SC.get('/users/'+mixVal._userData.ID+'/favorites').then(function(tracks) {
+    SC.get('/users/'+mixVal._userData.ID+'/favorites',{}).then(function(tracks) {
       mixVal.renderTracks(tracks, 'FAVORITEN');
     });
   },
@@ -305,279 +321,58 @@ $(function(){
   mixVal.init();
   checkMidiAccess();
   song = new SoundItem('261496737');
-});
 
-var SoundItem = (function(trackID){
-
-  var _self = this;
-  var tabwert = 1;
-  var trackID = trackID;
-  var context, gainNode, filter, reverb, audio, source, url;
-
-  function init(){
-
-    _self.createNewSound();
-    audio.crossOrigin = "anonymous";
-    audio.src = url;
-    source = context.createMediaElementSource(audio);
-    _self.setOutput();
-  }
-
-  this.createNewSound = function(){
-    context = new AudioContext();
-    gainNode = context.createGain();
-    filterLPF = context.createBiquadFilter();
-    filterHPF = context.createBiquadFilter();
-    reverb = context.createConvolver();
-    audio = new Audio();
-    source;
-    url ='https://api.soundcloud.com/tracks/'+trackID+'/stream?client_id=df0870cdaf901a641c6a00c36a0855f9';
-
-  }
-
-  this.setOutput = function(){
-      source.connect(gainNode);
-      gainNode.gain.value = 1;
-      gainNode.connect(filterLPF);
-      filterLPF.connect(filterHPF);
-      filterHPF.connect(context.destination);
-
-    }
-  this.setVolume = function(aktValue){
-      gainNode.gain.value = aktValue / 127;
-    }
-
-  this.play = function(){
-    source.mediaElement.play();
-  }
-
-  this.pause = function(){
-    source.mediaElement.pause();
-  }
-  this.stop = function(){
-    source.mediaElement.disconnect();
-  }
-
-  this.setFilterLow = function(val){
-    if(val){
-      var freq = val * 100;
-    } else{
-      freq = 20000;
-    }
-    filterLPF.type = 'lowpass';
-    filterLPF.frequency.value = freq;
-
-  }
-
-  this.setFilterHigh = function(val){
-    if(val){
-      var freq = val * 100;
-    } else{
-      freq = 20000;
-    }
-    filterHPF.type = 'highpass';
-    filterHPF.frequency.value = freq;
-  }
-
-  this.pitchSong = function(val){
-    if(val == 64){
-      speed = 1;
-    }
-    else{
-      speed = ((val - 64) * 0.01) + 1;
-    }
-    source.mediaElement.playbackRate = speed;
-  }
-
-  this.pitchSongNew = function(val){
-    var oldSpeed = source.mediaElement.playbackRate;
-    if(tabwert == 1){
-      tabwert = 0;
-      console.log("1");
-      source.mediaElement.playbackRate -= val;
-       _self.rePitch(oldSpeed, 0);
-       }
-  }
-
-  this.rePitch = function(val){
-        setTimeout(function(){
-          console.log(tabwert);
-          source.mediaElement.playbackRate = val;
-          tabwert = 1;
-        },100);
-  }
-  this.pitchSongNewFast = function(val){
-    var oldSpeed = source.mediaElement.playbackRate;
-    if(tabwert == 1){
-      tabwert = 0;
-      source.mediaElement.playbackRate += val;
-       _self.rePitch(oldSpeed, 0);
-       }
-  }
-
-
-
-  this.destroy = function(){
-    context.close();
-  }
-  init();
-
-  return this;
+  $("#putty-low-left").roundSlider({
+      sliderType: "min-range",
+      handleShape: "round",
+      width: 10,
+      radius: "35",
+      value: 0,
+      max: "127",
+      startAngle: 271,
+      change : function(){
+        mixVal._song1.setFilterLow($("#putty-low-left").data("roundSlider").getValue());
+      }
+  });
+  $("#putty-high-left").roundSlider({
+      sliderType: "min-range",
+      handleShape: "round",
+      width: 10,
+      radius: "35",
+      value: 0,
+      max: "127",
+      startAngle: 271,
+      change : function(){
+        mixVal._song1.setFilterHigh($("#putty-high-left").data("roundSlider").getValue());
+      }
+  });
+  $("#putty-low-right").roundSlider({
+      sliderType: "min-range",
+      handleShape: "round",
+      width: 10,
+      radius: "35",
+      value: 0,
+      max: "127",
+      startAngle: 271,
+      change : function(){
+        mixVal._song2.setFilterLow($("#putty-low-right").data("roundSlider").getValue());
+      }
+  });
+  $("#putty-high-right").roundSlider({
+      sliderType: "min-range",
+      handleShape: "round",
+      width: 10,
+      radius: "35",
+      value: 0,
+      max: "127",
+      startAngle: 271,
+      change : function(){
+        mixVal._song2.setFilterHigh($("#putty-high-right").data("roundSlider").getValue());
+      }
+  });
 
 });
 
-var midi, data;
-var PitchDeck1 = 64;
-
-function checkMidiAccess(){
-  if(navigator.requestMIDIAccess){
-    navigator.requestMIDIAccess({sysex: false}).then(onMIDISuccess, onMIDIFailure);
-  }
-  else {
-    alert("No MIDI support in your browser.");
-  }
-}
-function onMIDISuccess(midiAccess) {
-
-  midi = midiAccess;
-  var inputs = midi.inputs.values();
-  for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
-      input.value.onmidimessage = onMIDIMessage;
-  }
-}
-function onMIDIMessage(event) {
-  data = event.data,
-  // cmd = data[0] >> 4,
-  // channel = data[0] & 0xf,
-  // type = data[0] & 0xf0,
-  note = data[1],
-  velocity = data[2];
-
-  switch (note) {
-
-      // Deck1 Fader
-      case 1:
-        mixVal._song1.setVolume(velocity);
-      break;
-
-      // Play
-      case 2:
-        if (velocity === 127) {
-          $("#player1 .wheel").addClass('spin');
-           mixVal._song1.play();
-        }
-      break;
-
-      // PAUSE
-      case 3:
-        if (velocity === 127) {
-          $("#player1 .wheel").removeClass('spin');
-          mixVal._song1.pause();
-        }
-      break;
-
-      // Filter
-      case 4:
-      console.log('4');
-          mixVal._song1.setFilterLow(velocity);
-      break;
-
-      // Deck2 Fader
-      case 5:
-        mixVal._song2.setVolume(velocity);
-      break;
-
-      // Play
-      case 6:
-        if (velocity === 127) {
-          $("#player2 .wheel").addClass('spin');
-           mixVal._song2.play();
-        }
-      break;
-
-      // PAUSE
-      case 7:
-        if (velocity === 127) {
-          $("#player2 .wheel").removeClass('spin');
-           mixVal._song2.pause();
-        }
-      break;
-
-      // Filter
-      case 8:
-      console.log('8');
-        mixVal._song2.setFilterLow(velocity);
-      break;
-
-      case 10:
-            console.log('10');
-        mixVal._song2.setFilterHigh(velocity);
-      break;
-
-      case 9:
-            console.log('9');
-        mixVal._song1.setFilterHigh(velocity);
-      break;
-
-      case 11:
-        mixVal._song1.pitchSong(velocity);
-        PitchDeck1 = velocity;
-
-
-      break;
-
-      case 12:
-        mixVal._song2.pitchSong(velocity);
-      break;
-
-      case 13:
-      var rech = ((PitchDeck1 - 64) * 0.01) + 1;
-
-      if(velocity = 127){
-        mixVal._song1.pitchSongNew(rech - 0.05);
-      }else{
-        mixval._song1.pitchSongNew(rech);
-      }
-
-      break;
-
-      case 14:
-
-      var rech = ((PitchDeck1 - 64) * 0.01) + 1;
-
-      if(velocity = 127){
-        mixVal._song1.pitchSongNewFast(rech - 0.05);
-      }else{
-        mixval._song1.pitchSongNewFast(rech);
-      }
-
-      break;
-
-      case 15:
-
-      var rech = ((PitchDeck1 - 64) * 0.01) + 1;
-
-      if(velocity = 127){
-        mixVal._song2.pitchSongNew(rech - 0.05);
-      }else{
-        mixval._song2.pitchSongNew(rech);
-      }
-
-      break;
-
-      case 16:
-
-      var rech = ((PitchDeck1 - 64) * 0.01) + 1;
-
-      if(velocity = 127){
-        mixVal._song2.pitchSongNewFast(rech - 0.05);
-      }else{
-        mixval._song2.pitchSongNewFast(rech);
-      }
-
-      break;
-  }
-}
 
 function onMIDIFailure(error) {
     console.log("Midi haste nicht... MÖÖÖÖP" + error);

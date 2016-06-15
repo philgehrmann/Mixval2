@@ -7,7 +7,10 @@
     <script src="js/jquery-2.1.4.min.js" /></script>
     <script src="js/jquery.vide.js"></script>
     <script src="js/jquery.tubular.1.0.js"></script>
+    <script src="js/roundslider.js"></script>
+      <script src="js/sounditem.js"></script>
     <script src="js/main.js"></script>
+      <link rel="stylesheet" href="css/roundslider.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -44,9 +47,18 @@
     </div>
     <div id="mixer">
       <div id="player1">
-        <div class="wave">
-      </div>
+        <div class="bpm">1
+          -/- BPM</div>
         <div class="title"></div>
+          <div class="pitch">
+
+          <div class="pitchbend-wrapper">
+            PITCH
+            <input type="range" min="0" max="127" value="64"/>
+          </div>
+        </div>
+        <div class="wave"></div>
+
         <div class="wheel"></div>
 
         <div class="buttons">
@@ -56,14 +68,44 @@
 
         </div>
       </div>
+
+          <div id="equalizer">
+            <div class="headline"><span class='green'>MIX</span>VAL</div>
+            <div class="deck one">
+              HIGH<div id="putty-high-left" class="putty"></div>
+              LOW<div id="putty-low-left"></div>
+              <div class="fader">
+              <input type="range" min="0" max="127" value="64"/>
+            </div>
+          </div>
+          <div class="deck two">
+            HIGH<div id="putty-high-right" class="putty" ></div>
+            LOW<div id="putty-low-right"></div>
+              <div class="fader">
+              <input type="range" min="0" max="127" value="64"/>
+            </div>
+        </div>
+          </div>
+
       <div id="player2">
-        <div class="wave"></div>
+        <div class="bpm"> -/- BPM</div>
         <div class="title"></div>
+          <div class="pitch">
+
+          <div class="pitchbend-wrapper">
+            PITCH
+            <input type="range" min="0" max="127" value="64"/>
+          </div>
+        </div>
+        <div class="wave"></div>
+
         <div class="wheel"></div>
+
         <div class="buttons">
           <div class="play two"><i class="fa fa-play" aria-hidden="true"></i></div>
           <div class="pause two"><i class="fa fa-pause" aria-hidden="true"></i></div>
           <div class="cue two"><i class="fa fa-expand" aria-hidden="true"></i></div>
+
         </div>
       </div>
       <div class="sc-bar">
